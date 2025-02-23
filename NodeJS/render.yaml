@@ -1,0 +1,8 @@
+services:
+  - type: web
+    name: my-express-app
+    runtime: node
+    repo: https://github.com/YOUR_USERNAME/YOUR_REPO
+    envVars:
+      - key: PORT
+        value: 5000
