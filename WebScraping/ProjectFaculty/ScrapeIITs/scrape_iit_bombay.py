@@ -1,7 +1,19 @@
 import re
 from selenium.webdriver.common.by import By  # type: ignore
 
-def scrape_iit_bombay(college, department, url, driver):
+def scrape_iit_bombay(college: str, department: str, url: str, driver) -> list:
+    """
+    Scrapes project positions from the IIT Bombay careers page.
+
+    Parameters:
+    - college (str): Name of the college (IIT Bombay).
+    - department (str): Department to filter positions.
+    - url (str): Webpage URL to scrape.
+    - driver: Selenium WebDriver instance.
+
+    Returns:
+    - List[dict]: Extracted project positions with relevant details.
+    """
     driver.get(url)
     extracted_data = []
 
@@ -15,10 +27,10 @@ def scrape_iit_bombay(college, department, url, driver):
             title_element = job.find_element(By.CSS_SELECTOR, ".accordion-section-title")
             extracted_row["project_title"] = title_element.text.strip()
 
-            # Get job details
+            # Get job details as HTML
             content_html = job.find_element(By.CSS_SELECTOR, ".accordion-section-content").get_attribute("outerHTML")
 
-            # Define patterns to extract required details
+            # Define regex patterns for extracting details
             patterns = {
                 "name_of_post": r"<strong>Position Title:.*?</strong>\s*(.*?)</p>",
                 "duration": r"<strong>Duration:.*?</strong>\s*(.*?)</p>",
@@ -27,15 +39,13 @@ def scrape_iit_bombay(college, department, url, driver):
                 "advertisement_link": r'<a class="button" href="([^"]+)"'
             }
 
-            # Extract information using regex
+            # Apply regex patterns to extract information
             for key, pattern in patterns.items():
                 match = re.search(pattern, content_html, re.DOTALL)
                 extracted_row[key] = match.group(1).strip() if match else "N/A"
 
             # Add metadata
-            extracted_row["college"] = "IIT Bombay"
-            extracted_row["department"] = department
-
+            extracted_row.update({"college": college, "department": department})
             extracted_data.append(extracted_row)
 
     return extracted_data

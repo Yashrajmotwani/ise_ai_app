@@ -1,71 +1,66 @@
 import re
-from ScrapeIITs.chooseScrapper import call_function_based_on_college
-from selenium import webdriver  # type: ignore # Selenium WebDriver for browser automation
-from selenium.webdriver.common.by import By   # type: ignore
+from selenium import webdriver  # type: ignore
+from selenium.webdriver.common.by import By  # type: ignore
 from selenium.webdriver.chrome.service import Service  # type: ignore
 from selenium.webdriver.chrome.options import Options  # type: ignore
-from webdriver_manager.chrome import ChromeDriverManager # type: ignore # To automatically manage ChromeDriver
-from ScrapeIITs.links import links  # Import a dictionary containing URLs for different colleges and departments
+from webdriver_manager.chrome import ChromeDriverManager  # type: ignore
 
-def scrape_website(college, department):    
+from ScrapeIITs.chooseScrapper import call_function_based_on_college
+from ScrapeIITs.links import links  # Dictionary containing URLs for IITs
+
+
+def scrape_website(college: str, department: str):
     """
-    Scrapes data from the specified college and department webpage using Selenium.
-    
+    Scrapes data for a specific college and department.
+
     Args:
-        college (str): The name of the college.
-        department (str): The department within the college.
+        college (str): College name.
+        department (str): Department name.
 
     Returns:
-        dict or list: Extracted data from the webpage or an error message if invalid input.
+        list | dict: Extracted data from the webpage or an error message.
     """
-    
-    # Validate if the given college and department exist in the links dictionary
-    if college not in links or department not in links[college]:
-        return {"error": "Invalid college or department or URL format. The correct format is /<college>/<department>/."}
 
-    # Get the target URL for scraping
+    # Validate college and department existence in links dictionary
+    if college not in links or department not in links[college]:
+        return {"error": "Invalid college or department. Format: /<college>/<department>/."}
+
+    # Retrieve target URL
     url = links[college][department]
 
-    # Configure Selenium Chrome options for headless mode (no GUI)
+    # Configure Selenium for headless browsing
     chrome_options = Options()
-    chrome_options.add_argument("--headless")  # Enables headless mode for non-GUI execution
-    chrome_options.add_argument("--no-sandbox")  # Bypasses OS security restrictions
-    chrome_options.add_argument("--disable-dev-shm-usage")  # Prevents shared memory issues
+    chrome_options.add_argument("--headless")  # Run in headless mode (no GUI)
+    chrome_options.add_argument("--no-sandbox")  # Bypass OS security restrictions
+    chrome_options.add_argument("--disable-dev-shm-usage")  # Prevent shared memory issues
 
-    # Set the Chrome binary location (for Linux-based deployments)
-    chrome_options.binary_location = "/usr/bin/google-chrome"  
+    # Set Chrome binary location (for Linux-based deployments)
+    chrome_options.binary_location = "/usr/bin/google-chrome"
 
-    # Specify the path to Chromedriver (Ensure Chromedriver is correctly installed and located)
+    # Initialize WebDriver
     service = Service("/usr/bin/chromedriver-linux64/chromedriver")  
-    driver = webdriver.Chrome(service=service, options=chrome_options)  # Initialize Selenium WebDriver
+    driver = webdriver.Chrome(service=service, options=chrome_options)
 
-    # Call the appropriate scraping function based on the college name
-    data = call_function_based_on_college(college, department, url, driver)
+    try:
+        # Call the appropriate scraper function based on college
+        return call_function_based_on_college(college, department, url, driver)
+    finally:
+        driver.quit()  # Ensure driver quits after execution
 
-    # Return the extracted data
-    return data
 
 def scrape_website_allInfo():
     """
-    Scrapes data for all colleges and departments present in the `links` dictionary.
-    
-    Returns:
-        list: A list containing extracted data from all available colleges and departments.
-    """
-    
-    scraped_data = []  # List to store data from all scrapes
+    Scrapes data for all available colleges and departments.
 
-    # Iterate over each college and its departments
+    Returns:
+        list: Aggregated data from all available sources.
+    """
+    scraped_data = []
+
     for college, departments in links.items():
         for department in departments:
-            # Scrape data for each department
             data = scrape_website(college, department)
-            
-            # Skip if an error occurs (e.g., invalid URL)
-            if "error" in data:
-                continue
+            if "error" not in data:  # Skip errors
+                scraped_data.append(data)
 
-            # Append extracted data to the list
-            scraped_data.append(data)
-    
-    return scraped_data  # Return the complete dataset
+    return scraped_data  # Return the aggregated dataset
