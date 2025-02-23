@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- dialog_project_details.xml -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="24dp"
+    android:background="?android:attr/windowBackground"
+    android:layout_gravity="center">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/teacherImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/baseline_face_24"
+            android:layout_gravity="center"
+            android:contentDescription="Teacher Image"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Teacher Name -->
+        <TextView
+            android:id="@+id/teacherName"
+            android:text="Teacher Name: "
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Position -->
+        <TextView
+            android:id="@+id/position"
+            android:text="Position: "
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Qualification -->
+        <TextView
+            android:id="@+id/qualification"
+            android:text="Qualification: "
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Area of Interest -->
+        <TextView
+            android:id="@+id/areaInterest"
+            android:text="Area of Interest: "
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Phone -->
+        <TextView
+            android:id="@+id/phone"
+            android:text="Phone: "
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:clickable="true" />
+
+        <!-- College -->
+        <TextView
+            android:id="@+id/college"
+            android:text="College: "
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Department -->
+        <TextView
+            android:id="@+id/department"
+            android:text="Department: "
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Email (Clickable) -->
+        <TextView
+            android:id="@+id/emailID"
+            android:text="Email Id: "
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:autoLink="web"
+            android:ellipsize="end"
+            android:maxLines="1" />
+
+    </LinearLayout>
+</ScrollView>

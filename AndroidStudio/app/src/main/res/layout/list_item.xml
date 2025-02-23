@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:id="@+id/college_card"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@android:color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp">
+
+        <!-- College Logo -->
+        <ImageView
+            android:id="@+id/collegeLogo"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/baseline_college_icon"
+            android:scaleType="fitCenter"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:contentDescription="College Logo"/>
+
+        <!-- College Name -->
+        <TextView
+            android:id="@+id/collegeName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="College Name"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/collegeLogo"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="16dp"/>
+
+        <!-- NIRF Rank -->
+        <TextView
+            android:id="@+id/founded"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Founded: 2000"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/collegeName"
+            app:layout_constraintStart_toEndOf="@id/collegeLogo"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"/>
+
+        <!-- College State -->
+        <TextView
+            android:id="@+id/state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="State: Maharashtra"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/founded"
+            app:layout_constraintStart_toEndOf="@id/collegeLogo"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"/>
+
+        <TextView
+            android:id="@+id/num_faculty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number of Faculty: 100"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/state"
+            app:layout_constraintStart_toEndOf="@id/collegeLogo"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"/>
+
+        <TextView
+            android:id="@+id/num_students"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number of Students: 100"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/num_faculty"
+            app:layout_constraintStart_toEndOf="@id/collegeLogo"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

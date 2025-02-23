@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Set the background color of the BottomSheet -->
+    <solid android:color="#ffffff" />  <!-- White background color for the BottomSheet -->
+
+    <!-- Set the rounded corners of the BottomSheet -->
+    <corners android:radius="16dp" />  <!-- Rounded corners with a radius of 16dp -->
+
+    <!-- Padding inside the BottomSheet -->
+    <padding
+        android:left="16dp"
+        android:top="16dp"
+        android:right="16dp"
+        android:bottom="16dp" />
+</shape>
