@@ -53,6 +53,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // Set the default selected item
+        bottomNavigationView.selectedItemId = R.id.nav_positions
+
 
         fab.setOnClickListener {
             showBottomSheet()
@@ -119,10 +122,15 @@ class MainActivity : AppCompatActivity() {
     // Override onBackPressed to handle back button logic
     override fun onBackPressed() {
         val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
+        bottomNavigationView.selectedItemId = R.id.nav_positions
+        highlightMenuItem(bottomNavigationView.menu.findItem(R.id.nav_positions))
 
         if (currentFragment is SearchFragment) {
             if (backPressedOnce) {
                 super.onBackPressed() // Exit the app
+                bottomNavigationView.selectedItemId = R.id.nav_positions
+                highlightMenuItem(bottomNavigationView.menu.findItem(R.id.nav_positions))
+
             } else {
                 backPressedOnce = true
                 Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show()
@@ -136,10 +144,22 @@ class MainActivity : AppCompatActivity() {
             } else {
                 // If no fragments in the back stack, replace with SearchFragment
                 replaceFragment(SearchFragment())
+
+                // Explicitly set the selected item and trigger the listener
                 bottomNavigationView.selectedItemId = R.id.nav_positions
+
+                // Manually call the onItemSelectedListener to trigger the highlight animation
+                bottomNavigationView.setOnItemSelectedListener { menuItem: MenuItem ->
+                    // Call the same logic as before
+                    if (menuItem.itemId == R.id.nav_positions) {
+                        highlightMenuItem(menuItem)
+                    }
+                    true
+                }
             }
         }
     }
+
 
 
 }

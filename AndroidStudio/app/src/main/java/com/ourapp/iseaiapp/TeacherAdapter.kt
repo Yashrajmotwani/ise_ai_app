@@ -26,11 +26,11 @@ class TeacherAdapter(
     inner class TeacherViewHolder(private val binding: ItemTeacherBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(teacher: Teacher) {
             binding.apply {
-                teacherName.text = teacher.name
-                areaInterest.text = teacher.areas_of_interest
-                college.text = "College: ${teacher.college.orEmpty()}"
-                emailID.text = "Email: ${teacher.email.ifBlank { "NA" }}"
-                department.text = "Dept: ${teacher.department.ifBlank { "NA" }}"
+                teacherName.text = teacher.name ?: "NA"
+                areaInterest.text = teacher.areas_of_interest?.takeIf { it.isNotBlank() } ?: "NA"
+                college.text = "College: ${teacher.college ?: "NA"}"
+                emailID.text = "Email: ${teacher.email?.takeIf { it.isNotBlank() } ?: "NA"}"
+                department.text = "Dept: ${teacher.department?.takeIf { it.isNotBlank() } ?: "NA"}"
 
                 // Truncate Area of Interest if too long
                 areaInterest.maxLines = 1

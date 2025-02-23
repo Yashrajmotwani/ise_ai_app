@@ -5,9 +5,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
-//    val BASE_URL = "https://ise-android-project.onrender.com/"
+    val BASE_URL = "https://ise-ai-project.onrender.com"
 
-    val BASE_URL = "http://10.25.84.207:5000/"
+//    val BASE_URL = "http://10.25.84.207:5000/"
 
     // Create a Retrofit instance
     val api: ApiService by lazy {

@@ -223,7 +223,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
         val notification = NotificationCompat.Builder(this, channelId)
-            .setContentTitle("IITConnect Alert")
+            .setContentTitle("ISE-AI-APP Alert")
             .setContentText(message)
             .setSmallIcon(R.mipmap.app_logo)
             .setAutoCancel(true)

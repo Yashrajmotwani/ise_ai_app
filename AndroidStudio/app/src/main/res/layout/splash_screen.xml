@@ -25,7 +25,7 @@
         android:id="@+id/splashText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="IIT Connect"
+        android:text="ISE AI APP"
         android:textSize="40sp"
         android:textColor="#DABD56"
         android:layout_marginTop="10dp"
