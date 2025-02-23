@@ -92,7 +92,10 @@ class SearchFragment : Fragment() {
     private fun showNoResultsDialog() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle("No Results Found")
-            .setMessage("No projects matched your search. Try a different query.")
+            .setMessage("No Projects matched. Try searching with different keywords, such as:\n\n" +
+                    "• Open or Closed\n" +
+                    "• Project\n" +
+                    "• College (e.g., 'IIT Tirupati')\n")
             .setPositiveButton("OK") { dialog, _ ->
                 dialog.dismiss()
             }
